@@ -1,151 +1,254 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exca Math</title>
     <style>
-        /* Global Style */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F4F4F4;
-            color: #333;
-            transition: opacity 0.3s ease;
-        }
+      /* Global Style */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        transition: opacity 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
 
-        header {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
+      header {
+        background-color: #007BFF;
+        width: 100%;
+        padding: 20px;position: sticky;
+        text-align: center;
+      }
 
-        header h1 {
-            margin: 0;
-        }
+      header h1{
+        color: WHITE;
+        font-size: 40px;
+      }
 
+      header a {
+        text-decoration: none;
+        color: #000;
+        font-size: 20px;
+        margin: 10px;
+        background-color: aquamarine;
+        padding: 10px;
+        border-radius: 9px;
+      }
+
+       header a:hover {
+        box-shadow: 0px 0px 10px red, 0px 0px 30px red, 0px 0px 90px red;
+       }
+
+      .content {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        flex-grow: 1;
+      }
+
+      .section {
+        display: none;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        transform: scale(0.8);
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .section.show {
+        display: block;
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .home {
+        background-color: #e1f5fe;
+      }
+
+      .project {
+        background-color: #fff3e0;
+      }
+
+      .contact {
+        background-color: #e8f5e9;
+      }
+
+      /* Modal Style */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 800px;
+      }
+
+      .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        float: right;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* Responsive Styling */
+      @media (max-width: 600px) {
         header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        header a:hover {
-            color: #f39c12;
+          display: block;
+          margin: 10px 0;
         }
 
         .content {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+          padding: 10px;
         }
-
-        .section {
-            display: none;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            transform: scale(0.8);
-            opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        .section.show {
-            display: block;
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .home {
-            background-color: #e1f5fe;
-        }
-
-        .project {
-            background-color: #fff3e0;
-        }
-
-        .contact {
-            background-color: #e8f5e9;
-        }
-
-        /* Responsive Styling */
-        @media (max-width: 600px) {
-            header a {
-                display: block;
-                margin: 10px 0;
-            }
-
-            .content {
-                padding: 10px;
-            }
-        }
+      }
     </style>
+  </head>
+  <body>
+    <header>
+      <h1>Exca Math</h1>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('project')">Project</a>
+      <a href="#" onclick="showSection('contact')">Contact</a>
+    </header>
+
+    <div class="content">
+      <div id="home" class="section show home">
+        <h2>Selamat Datang di Exca Math!</h2>
+        <p>
+          Halo, kami mengucapkan selamat datang di situs resmi Exca Math! Di
+          sini, Anda akan menemukan berbagai informasi dan sumber daya terkait
+          matematika yang bermanfaat.
+        </p>
+      </div>
+      <div id="project" class="section project">
+        <h2>Proyek Kami</h2>
+        <p>
+          Di Exca Math, kami mengerjakan berbagai proyek matematika untuk
+          membantu orang memahami konsep-konsep matematika secara lebih mudah
+          dan menyenangkan.
+        </p>
+
+        <!-- Tombol untuk membuka modal -->
+        <button onclick="openModal()">Tampilkan Kode</button>
+      </div>
+      <div id="contact" class="section contact">
+        <h2>Kontak Kami</h2>
+        <p>
+          Jika Anda ingin menghubungi kami, ada beberapa cara yang bisa
+          dilakukan:
+        </p>
+        <ul>
+          <li>
+            <strong>Email:</strong>
+            <a href="mailto:info@excamath.com">info@excamath.com</a>
+          </li>
+          <li><strong>Telepon:</strong> +62 21 555 1234</li>
+          <li>
+            <strong>Alamat:</strong> Jl. Matematikawan No. 10, Jakarta,
+            Indonesia
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modal untuk menampilkan kode -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Hitung Volume Balok</h2>
+        <pre><code>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Volume Balok</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 300px; }
+        h1 { font-size: 24px; text-align: center; margin-bottom: 20px; color: #333; }
+        label { font-size: 16px; color: #333; margin-bottom: 8px; display: block; }
+        input[type="number"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 12px; background-color: #007BFF; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        #hasil { font-size: 18px; text-align: center; margin-top: 20px; color: #333; }
+    </style>
+    <script>
+        function hitungVolume() {
+            var panjang = parseFloat(document.getElementById("panjang").value);
+            var lebar = parseFloat(document.getElementById("lebar").value);
+            var tinggi = parseFloat(document.getElementById("tinggi").value);
+            var volume = panjang * lebar * tinggi;
+            document.getElementById("hasil").innerHTML = "Volume Balok: " + volume + " cm³";
+        }
+    </script>
 </head>
 <body>
-
-<header>
-    <h1>Exca Math</h1>
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('project')">Project</a>
-    <a href="#" onclick="showSection('contact')">Contact</a>
-</header>
-
-<div class="content">
-    <div id="home" class="section show home">
-        <h2>Selamat Datang di Exca Math!</h2>
-        <p>Halo, kami mengucapkan selamat datang di situs resmi Exca Math! Di sini, Anda akan menemukan berbagai informasi dan sumber daya terkait matematika yang bermanfaat. Kami berkomitmen untuk membuat belajar matematika lebih menyenangkan dan mudah dipahami.</p>
-        <p>Jangan ragu untuk menjelajahi proyek kami dan melihat bagaimana kami menerapkan berbagai konsep matematika dalam kehidupan nyata!</p>
+    <div class="container">
+        <h1>Hitung Volume Balok</h1>
+        <label for="panjang">Panjang (cm):</label>
+        <input type="number" id="panjang" placeholder="Masukkan panjang" required>
+        <label for="lebar">Lebar (cm):</label>
+        <input type="number" id="lebar" placeholder="Masukkan lebar" required>
+        <label for="tinggi">Tinggi (cm):</label>
+        <input type="number" id="tinggi" placeholder="Masukkan tinggi" required>
+        <button onclick="hitungVolume()">Hitung Volume</button>
+        <h2 id="hasil"></h2>
     </div>
-    <div id="project" class="section project">
-        <h2>Proyek Kami</h2>
-        <p>Di Exca Math, kami mengerjakan berbagai proyek matematika untuk membantu orang memahami konsep-konsep matematika secara lebih mudah dan menyenangkan. Beberapa proyek kami termasuk:</p>
-        <ul>
-            <li><strong>Matematika dalam Kehidupan Sehari-hari</strong>: Menggunakan konsep matematika untuk memecahkan masalah kehidupan nyata.</li>
-            <li><strong>Platform Pembelajaran Interaktif</strong>: Mengembangkan aplikasi untuk membantu siswa memahami matematika dengan cara yang lebih interaktif.</li>
-            <li><strong>Komunitas Pembelajaran</strong>: Membuat komunitas online di mana orang bisa berbagi pengetahuan dan bertanya tentang matematika.</li>
-        </ul>
-    </div>
-    <div id="contact" class="section contact">
-        <h2>Kontak Kami</h2>
-        <p>Jika Anda ingin menghubungi kami, ada beberapa cara yang bisa dilakukan:</p>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:info@excamath.com">info@excamath.com</a></li>
-            <li><strong>Telepon:</strong> +62 21 555 1234</li>
-            <li><strong>Alamat:</strong> Jl. Matematikawan No. 10, Jakarta, Indonesia</li>
-        </ul>
-        <p>Kami juga aktif di media sosial:</p>
-        <ul>
-            <li><a href="https://www.facebook.com/excamath" target="_blank">Facebook</a></li>
-            <li><a href="https://www.instagram.com/excamath" target="_blank">Instagram</a></li>
-            <li><a href="https://www.twitter.com/excamath" target="_blank">Twitter</a></li>
-        </ul>
-    </div>
-</div>
-
-<script>
-    function showSection(section) {
-        // Menyembunyikan semua bagian terlebih dahulu
-        document.querySelectorAll('.section').forEach(function (el) {
-            el.classList.remove('show');
-        });
-
-        // Memberikan sedikit delay sebelum menampilkan bagian baru
-        setTimeout(() => {
-            document.getElementById(section).classList.add('show');
-        }, 100);
-    }
-
-    // Memilih bagian default yang ditampilkan saat pertama kali halaman dimuat
-    document.addEventListener("DOMContentLoaded", () => {
-        showSection('home');
-    });
-</script>
-
 </body>
+</html>
+        </code></pre>
+      </div>
+    </div>
+
+    <script>
+      function showSection(section) {
+        document.querySelectorAll(".section").forEach(function (el) {
+          el.classList.remove("show");
+        });
+        setTimeout(() => {
+          document.getElementById(section).classList.add("show");
+        }, 100);
+      }
+
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showSection("home");
+      });
+    </script>
+  </body>
 </html>
