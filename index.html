@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exca Math</title>
+    <style>
+        /* Global Style */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F4F4;
+            color: #333;
+            transition: opacity 0.3s ease;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #f39c12;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .section.show {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .home {
+            background-color: #e1f5fe;
+        }
+
+        .project {
+            background-color: #fff3e0;
+        }
+
+        .contact {
+            background-color: #e8f5e9;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 600px) {
+            header a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Exca Math</h1>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('project')">Project</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+</header>
+
+<div class="content">
+    <div id="home" class="section show home">
+        <h2>Selamat Datang di Exca Math!</h2>
+        <p>Halo, kami mengucapkan selamat datang di situs resmi Exca Math! Di sini, Anda akan menemukan berbagai informasi dan sumber daya terkait matematika yang bermanfaat. Kami berkomitmen untuk membuat belajar matematika lebih menyenangkan dan mudah dipahami.</p>
+        <p>Jangan ragu untuk menjelajahi proyek kami dan melihat bagaimana kami menerapkan berbagai konsep matematika dalam kehidupan nyata!</p>
+    </div>
+    <div id="project" class="section project">
+        <h2>Proyek Kami</h2>
+        <p>Di Exca Math, kami mengerjakan berbagai proyek matematika untuk membantu orang memahami konsep-konsep matematika secara lebih mudah dan menyenangkan. Beberapa proyek kami termasuk:</p>
+        <ul>
+            <li><strong>Matematika dalam Kehidupan Sehari-hari</strong>: Menggunakan konsep matematika untuk memecahkan masalah kehidupan nyata.</li>
+            <li><strong>Platform Pembelajaran Interaktif</strong>: Mengembangkan aplikasi untuk membantu siswa memahami matematika dengan cara yang lebih interaktif.</li>
+            <li><strong>Komunitas Pembelajaran</strong>: Membuat komunitas online di mana orang bisa berbagi pengetahuan dan bertanya tentang matematika.</li>
+        </ul>
+    </div>
+    <div id="contact" class="section contact">
+        <h2>Kontak Kami</h2>
+        <p>Jika Anda ingin menghubungi kami, ada beberapa cara yang bisa dilakukan:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:info@excamath.com">info@excamath.com</a></li>
+            <li><strong>Telepon:</strong> +62 21 555 1234</li>
+            <li><strong>Alamat:</strong> Jl. Matematikawan No. 10, Jakarta, Indonesia</li>
+        </ul>
+        <p>Kami juga aktif di media sosial:</p>
+        <ul>
+            <li><a href="https://www.facebook.com/excamath" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/excamath" target="_blank">Instagram</a></li>
+            <li><a href="https://www.twitter.com/excamath" target="_blank">Twitter</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function showSection(section) {
+        // Menyembunyikan semua bagian terlebih dahulu
+        document.querySelectorAll('.section').forEach(function (el) {
+            el.classList.remove('show');
+        });
+
+        // Memberikan sedikit delay sebelum menampilkan bagian baru
+        setTimeout(() => {
+            document.getElementById(section).classList.add('show');
+        }, 100);
+    }
+
+    // Memilih bagian default yang ditampilkan saat pertama kali halaman dimuat
+    document.addEventListener("DOMContentLoaded", () => {
+        showSection('home');
+    });
+</script>
+
+</body>
+</html>
